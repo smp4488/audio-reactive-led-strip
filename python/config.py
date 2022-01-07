@@ -3,8 +3,8 @@ from __future__ import print_function
 from __future__ import division
 import os
 
-DEVICE = 'esp8266'
-#DEVICE = 'pi'
+# DEVICE = 'esp8266'
+DEVICE = 'pi'
 """Device used to control LED strip. Must be 'pi',  'esp8266' or 'blinkstick'
 
 'esp8266' means that you are using an ESP8266 module to control the LED strip
@@ -26,24 +26,26 @@ if DEVICE == 'esp8266':
     """Set to False because the firmware handles gamma correction + dither"""
 
 if DEVICE == 'pi':
-    LED_PIN = 18
+    LED_PIN = 10
     """GPIO pin connected to the LED strip pixels (must support PWM)"""
     LED_FREQ_HZ = 800000
     """LED signal frequency in Hz (usually 800kHz)"""
-    LED_DMA = 5
+    LED_DMA = 10
     """DMA channel used for generating PWM signal (try 5)"""
     BRIGHTNESS = 255
     """Brightness of LED strip between 0 and 255"""
-    LED_INVERT = True
+    LED_INVERT = False
     """Set True if using an inverting logic level converter"""
     SOFTWARE_GAMMA_CORRECTION = True
     """Set to True because Raspberry Pi doesn't use hardware dithering"""
+    LED_CHANNEL = 0
+    """GPIO Channel set to '1' for GPIOs 13, 19, 41, 45 or 53"""
 
 if DEVICE == 'blinkstick':
     SOFTWARE_GAMMA_CORRECTION = True
     """Set to True because blinkstick doesn't use hardware dithering"""
 
-USE_GUI = True
+USE_GUI = False
 """Whether or not to display a PyQtGraph GUI plot of visualization"""
 
 DISPLAY_FPS = True
