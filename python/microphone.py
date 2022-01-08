@@ -26,7 +26,7 @@ def start_stream(callback):
     device_info = p.get_device_info_by_index(device_id)
     frames_per_buffer = int(config.MIC_RATE / config.FPS)
     stream = p.open(format=pyaudio.paInt16,
-                    channels=1,
+                    channels=2,
                     rate=config.MIC_RATE,
                     input=True,
                     frames_per_buffer=frames_per_buffer,
