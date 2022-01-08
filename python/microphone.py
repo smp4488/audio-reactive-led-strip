@@ -19,7 +19,7 @@ def start_stream(callback):
         info = p.get_device_info_by_index(i)
         print ( str(info["index"]) +  ": \t %s \n \t %s \n" % (info["name"], p.get_host_api_info_by_index(info["hostApi"])["name"]))
         pass
-    
+
     for i in range(0, p.get_device_count()):
         print(i, p.get_device_info_by_index(i)['name'])
     device_id = 1
@@ -30,8 +30,8 @@ def start_stream(callback):
                     rate=config.MIC_RATE,
                     input=True,
                     frames_per_buffer=frames_per_buffer,
-                    input_device_index=1,
-                    as_loopback=True)
+                    input_device_index=device_info["index"])
+                    # as_loopback=True)
     overflows = 0
     prev_ovf_time = time.time()
     while True:
