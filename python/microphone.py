@@ -22,15 +22,15 @@ def start_stream(callback):
 
     for i in range(0, p.get_device_count()):
         print(i, p.get_device_info_by_index(i)['name'])
-    device_id = 1
+    device_id = 2
     device_info = p.get_device_info_by_index(device_id)
     frames_per_buffer = int(config.MIC_RATE / config.FPS)
     stream = p.open(format=pyaudio.paInt16,
                     channels=1,
                     rate=config.MIC_RATE,
                     input=True,
-                    frames_per_buffer=frames_per_buffer)
-                    # input_device_index=device_info["index"])
+                    frames_per_buffer=frames_per_buffer,
+                    input_device_index=device_info["index"])
                     # as_loopback=True)
     overflows = 0
     prev_ovf_time = time.time()
