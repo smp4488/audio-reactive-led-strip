@@ -3,12 +3,26 @@ import numpy as np
 import pyaudio
 import config
 
+# import sounddevice
+# with sounddevice.OutputStream(device="USB Audio Device", channels=8, callback=callback, samplerate=SAMPLE_RATE):
+
+SAMPLE_RATE = 44100
+
 
 def start_stream(callback):
+    
+    
     p = pyaudio.PyAudio()
+
+    print ( "Available devices:\n")
+    for i in range(0, p.get_device_count()):
+        info = p.get_device_info_by_index(i)
+        print ( str(info["index"]) +  ": \t %s \n \t %s \n" % (info["name"], p.get_host_api_info_by_index(info["hostApi"])["name"]))
+        pass
+    
     frames_per_buffer = int(config.MIC_RATE / config.FPS)
     stream = p.open(format=pyaudio.paInt16,
-                    channels=0,
+                    channels=1,
                     rate=config.MIC_RATE,
                     input=True,
                     frames_per_buffer=frames_per_buffer)
