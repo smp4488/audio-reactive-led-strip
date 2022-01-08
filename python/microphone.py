@@ -19,7 +19,7 @@ def start_stream(callback):
     #     info = p.get_device_info_by_index(i)
     #     print ( str(info["index"]) +  ": \t %s \n \t %s \n" % (info["name"], p.get_host_api_info_by_index(info["hostApi"])["name"]))
     #     pass
-    device_id = 1
+    device_id = 2
     device_info = p.get_device_info_by_index(device_id)
     frames_per_buffer = int(config.MIC_RATE / config.FPS)
     stream = p.open(format=pyaudio.paInt16,
