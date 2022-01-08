@@ -27,8 +27,8 @@ def start_stream(callback):
                     rate=config.MIC_RATE,
                     input=True,
                     frames_per_buffer=frames_per_buffer,
-                    input_device_index=device_info["index"],
-                    as_loopback=True)
+                    input_device_index=device_info["index"])
+                    # as_loopback=True)
     overflows = 0
     prev_ovf_time = time.time()
     while True:
