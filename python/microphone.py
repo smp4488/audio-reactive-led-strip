@@ -14,18 +14,21 @@ def start_stream(callback):
     
     p = pyaudio.PyAudio()
 
-    print ( "Available devices:\n")
-    for i in range(0, p.get_device_count()):
-        info = p.get_device_info_by_index(i)
-        print ( str(info["index"]) +  ": \t %s \n \t %s \n" % (info["name"], p.get_host_api_info_by_index(info["hostApi"])["name"]))
-        pass
-    
+    # print ( "Available devices:\n")
+    # for i in range(0, p.get_device_count()):
+    #     info = p.get_device_info_by_index(i)
+    #     print ( str(info["index"]) +  ": \t %s \n \t %s \n" % (info["name"], p.get_host_api_info_by_index(info["hostApi"])["name"]))
+    #     pass
+    device_id = 1
+    device_info = p.get_device_info_by_index(device_id)
     frames_per_buffer = int(config.MIC_RATE / config.FPS)
     stream = p.open(format=pyaudio.paInt16,
                     channels=1,
                     rate=config.MIC_RATE,
                     input=True,
-                    frames_per_buffer=frames_per_buffer)
+                    frames_per_buffer=frames_per_buffer,
+                    input_device_index=device_info["index"],
+                    as_loopback=True)
     overflows = 0
     prev_ovf_time = time.time()
     while True:
