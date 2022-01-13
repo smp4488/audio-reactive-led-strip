@@ -1,15 +1,24 @@
 import time
+import threading
 from visualization import start, stop
 
-#start
-print('starting visuals')
-start()
-print('started')
+def background():
+    while True:
+        # number = int(len(oilrigs)) * 49
+        # number += money
+        # time.sleep(1)
+        print('starting visuals')
+        start()
 
-time.sleep(10)
+def foreground():
+    print('started')
+    # What you want to run in the foreground
+    time.sleep(10)
+    print('stopping visuals')
+    stop()
 
-print('stopping visuals')
-stop()
+b = threading.Thread(name='background', target=background)
+f = threading.Thread(name='foreground', target=foreground)
 
-print('starting visuals')
-start()
+b.start()
+f.start()
