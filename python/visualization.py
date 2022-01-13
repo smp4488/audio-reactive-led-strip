@@ -264,5 +264,7 @@ def start():
     # Start listening to live audio stream
     microphone.start_stream(microphone_update)
 
+    return True
+
 def stop():
     microphone.stop_stream()

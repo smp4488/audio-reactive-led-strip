@@ -1,5 +1,5 @@
 import time
-from .visualization import start, stop
+from visualization import start, stop
 
 #start
 print('starting visuals')
