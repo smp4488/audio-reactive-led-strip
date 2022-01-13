@@ -13,7 +13,7 @@ is_listening = True
 
 def start_stream(callback):
     
-    
+    is_listening = True
     p = pyaudio.PyAudio()
 
     # print ( "Available devices:\n")
@@ -36,12 +36,15 @@ def start_stream(callback):
                     # as_loopback=True)
     overflows = 0
     prev_ovf_time = time.time()
-    while is_listening:
+    while True:
         try:
-            y = np.fromstring(stream.read(frames_per_buffer, exception_on_overflow=False), dtype=np.int16)
-            y = y.astype(np.float32)
-            stream.read(stream.get_read_available(), exception_on_overflow=False)
-            callback(y)
+            if is_listening:
+                y = np.fromstring(stream.read(frames_per_buffer, exception_on_overflow=False), dtype=np.int16)
+                y = y.astype(np.float32)
+                stream.read(stream.get_read_available(), exception_on_overflow=False)
+                callback(y)
+            else:
+                break
         except IOError:
             overflows += 1
             if time.time() > prev_ovf_time + 1:
