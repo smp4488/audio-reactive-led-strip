@@ -7,6 +7,7 @@ import config
 # with sounddevice.OutputStream(device="USB Audio Device", channels=8, callback=callback, samplerate=SAMPLE_RATE):
 
 SAMPLE_RATE = 44100
+stream = None
 
 
 def start_stream(callback):
@@ -45,6 +46,11 @@ def start_stream(callback):
             if time.time() > prev_ovf_time + 1:
                 prev_ovf_time = time.time()
                 print('Audio buffer has overflowed {} times'.format(overflows))
+    stream.stop_stream()
+    stream.close()
+    p.terminate()
+
+def stop_stream():
     stream.stop_stream()
     stream.close()
     p.terminate()
