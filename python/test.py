@@ -13,7 +13,7 @@ def background():
 def foreground():
     print('started')
     # What you want to run in the foreground
-    time.sleep(10)
+    time.sleep(5)
     print('stopping visuals')
     stop()
 
