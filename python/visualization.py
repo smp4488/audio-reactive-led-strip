@@ -263,8 +263,7 @@ def start():
     led.update()
     # Start listening to live audio stream
     microphone.start_stream(microphone_update)
-
-    return True
+    print('stream started')
 
 def stop():
     microphone.stop_stream()
