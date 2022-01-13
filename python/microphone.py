@@ -44,6 +44,9 @@ def start_stream(callback):
                 stream.read(stream.get_read_available(), exception_on_overflow=False)
                 callback(y)
             else:
+                stream.stop_stream()
+                stream.close()
+                p.terminate()
                 break
         except IOError:
             overflows += 1
@@ -56,6 +59,6 @@ def start_stream(callback):
 
 def stop_stream():
     is_listening = False
-    stream.stop_stream()
-    stream.close()
-    p.terminate()
+    # stream.stop_stream()
+    # stream.close()
+    # p.terminate()
