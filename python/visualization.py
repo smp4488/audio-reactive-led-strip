@@ -201,12 +201,13 @@ def microphone_update(audio_samples):
     vol = np.max(np.abs(y_data))
     if vol < config.MIN_VOLUME_THRESHOLD:
         # print('No audio input. Volume below threshold. Volume:', vol)
-        led.pixels = np.tile(0, (3, config.N_PIXELS))
+        # led.pixels = np.tile(0, (3, config.N_PIXELS))
+        # need to get the current mycroft color here
         # set to solid color test
         for i in range(config.N_PIXELS):
             led.strip.setPixelColor(i, Color(255, 0, 0))
         
-        led.update()
+        # led.update()
     else:
         # Transform audio input into the frequency domain
         N = len(y_data)
