@@ -7,6 +7,7 @@ import config
 import microphone
 import dsp
 import led
+from rpi_ws281x import Color
 
 _time_prev = time.time() * 1000.0
 """The previous time that the frames_per_second() function was called"""
