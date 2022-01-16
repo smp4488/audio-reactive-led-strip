@@ -207,7 +207,7 @@ def microphone_update(audio_samples):
         for i in range(config.N_PIXELS):
             led.strip.setPixelColor(i, Color(255, 0, 0))
         
-        # led.update()
+        led.update()
     else:
         # Transform audio input into the frequency domain
         N = len(y_data)
