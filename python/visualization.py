@@ -201,6 +201,10 @@ def microphone_update(audio_samples):
     if vol < config.MIN_VOLUME_THRESHOLD:
         # print('No audio input. Volume below threshold. Volume:', vol)
         led.pixels = np.tile(0, (3, config.N_PIXELS))
+        # set to solid color test
+        for i in range(config.N_PIXELS):
+            led.strip.setPixelColor(i, Color(255, 0, 0))
+        
         led.update()
     else:
         # Transform audio input into the frequency domain
